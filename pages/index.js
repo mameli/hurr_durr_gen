@@ -55,7 +55,7 @@ export default function Home() {
   }, [toClipboard])
 
   return (
-    <div className="container mx-auto max-w-full bg-white flex flex-col h-screen justify-between">
+    <div className="container mx-auto max-w-full bg-white dark:bg-slate-800 flex flex-col h-screen justify-between">
       <Head>
         <title>Hurr Durr App</title>
         <meta name="description" content="Hurr Durr App" />
@@ -83,7 +83,7 @@ export default function Home() {
             }
           </div>
           <div className="h-20 max-w-prose">
-            <textarea className="caret-orange-600 w-80 shadow appearance-none border rounded py-2 px-3 text-gray-800 leading-tight focus:outline-none focus:shadow-outline" id="sentence" type="text" placeholder="Hurr durr uh?"
+            <textarea className="caret-orange-600 w-80 shadow appearance-none border rounded py-2 px-3 text-gray-800 dark:text-white dark:bg-gray-800 leading-tight focus:outline-none focus:shadow-outline" id="sentence" type="text" placeholder="Hurr durr uh?"
               value={sentence}
               onChange={e => setSentence(e.target.value)} />
           </div>
