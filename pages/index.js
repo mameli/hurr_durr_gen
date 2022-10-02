@@ -5,6 +5,8 @@ export default function Home() {
   const [sentence, setSentence] = useState("");
   const [hurrDurredSentence, setHurrDurredSentence] = useState("Hurr durr uh?");
   const [shuffle, setShuffle] = useState(true);
+  const [toClipboard, setToClipboard] = useState(false);
+
 
 
   const getRandomInt = (max) => {
@@ -13,16 +15,27 @@ export default function Home() {
 
   useEffect(() => {
     const charDict = {
-      'a': '4',
-      'e': '3',
-      'i': '1',
-      'o': '0'
+      'a': '4æäåâ',
+      'e': '3ëę',
+      'i': '1î',
+      'o': '0œøö',
+      'u': 'üû',
+      'c': 'čç',
+      's': 'š',
+      'z': 'žż',
+      'n': 'ñ'
+    }
+
+    const pickCharDict = (chars) => {
+      if (chars.length == 1) return chars
+      const r = getRandomInt(chars.length)
+      return chars[r]
     }
 
     const hurrDurrChar = (c) => {
       const r = getRandomInt(2)
       if (r == 0) return c.toUpperCase();
-      if (r == 1) return charDict[c] ? charDict[c] : c;
+      if (r == 1) return charDict[c] ? pickCharDict(charDict[c]) : c;
       return c;
     }
 
@@ -33,8 +46,16 @@ export default function Home() {
     if (sentence) setHurrDurredSentence(tmpArrSentence.join(''))
   }, [shuffle, sentence])
 
+  useEffect(() => {
+    if (toClipboard) {
+      setTimeout(function () {
+        setToClipboard(!toClipboard)
+      }, 2000);
+    }
+  }, [toClipboard])
+
   return (
-    <div className="container mx-auto max-w-full dark:bg-gray-800 bg-white flex flex-col h-screen justify-between">
+    <div className="container mx-auto max-w-full bg-white flex flex-col h-screen justify-between">
       <Head>
         <title>Hurr Durr App</title>
         <meta name="description" content="Hurr Durr App" />
@@ -49,19 +70,25 @@ export default function Home() {
               Hurr Durr Me
             </h1>
           </div>
-          <div className="h-fit max-w-prose"> 
-            <p className='text-clip text-4xl text-center'
-            onClick={() =>  navigator.clipboard.writeText(hurrDurredSentence)}
+          <div className="h-fit max-w-prose">
+            <p className='text-clip text-4xl text-center font-medium'
+              onClick={() => {navigator.clipboard.writeText(hurrDurredSentence); setToClipboard(true)}}
             >{hurrDurredSentence}</p>
           </div>
-          <div className="h-10"/>
+          <div className="h-10">
+            {toClipboard ?
+              <p className='text-1xl text-center font-extralight tracking-widest underline decoration-wavy underline-offset-4 decoration-lime-500'
+              >copied to clipboard</p>
+              : null
+            }
+          </div>
           <div className="h-20 max-w-prose">
-            <input className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="sentence" type="text" placeholder="Hurr durr uh?"
+            <textarea className="caret-orange-600 w-80 shadow appearance-none border rounded py-2 px-3 text-gray-800 leading-tight focus:outline-none focus:shadow-outline" id="sentence" type="text" placeholder="Hurr durr uh?"
               value={sentence}
               onChange={e => setSentence(e.target.value)} />
           </div>
           <div className="h-20">
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            <button className="bg-lime-500 hover:bg-lime-700 text-white font-bold py-2 px-4 rounded"
               onClick={_ => setShuffle(!shuffle)}>
               Shuffle!
             </button>
@@ -71,7 +98,7 @@ export default function Home() {
       <footer className="flex flex-col justify-center h-10">
         <hr />
         <span className="m-auto">Created by <a
-          className="text-cyan-500 hover:underline underline-offset-2"
+          className="text-lime-500 hover:underline underline-offset-2"
           href="https://github.com/mameli"
         >
           @Mameli 🗿
