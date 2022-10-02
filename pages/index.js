@@ -50,7 +50,9 @@ export default function Home() {
             </h1>
           </div>
           <div className="h-fit max-w-prose"> 
-            <p className='text-clip text-4xl text-center'>{hurrDurredSentence}</p>
+            <p className='text-clip text-4xl text-center'
+            onClick={() =>  navigator.clipboard.writeText(hurrDurredSentence)}
+            >{hurrDurredSentence}</p>
           </div>
           <div className="h-10"/>
           <div className="h-20 max-w-prose">
