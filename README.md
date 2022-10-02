@@ -1,3 +1,12 @@
+## Intro
+Are you tired of replying to pointless messages?
+Here's the site for you!
+You can copy the text of messages from your friends and loved ones and reply sarcastically without breaking a sweat!
+Meaningless politics?
+Disagreeable tastes?
+Straight-up crap?
+Write your message and copy it with a simple tap with Hurr Durr me!
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
