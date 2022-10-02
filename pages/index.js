@@ -73,7 +73,7 @@ export default function Home() {
           <div className="h-fit max-w-prose">
             <p className='text-clip text-4xl text-center font-medium'
               onClick={() => {navigator.clipboard.writeText(hurrDurredSentence); setToClipboard(true)}}
-            >{hurrDurredSentence}</p>
+            >{sentence? hurrDurredSentence : "Hurr durr uh?"}</p>
           </div>
           <div className="h-10">
             {toClipboard ?
