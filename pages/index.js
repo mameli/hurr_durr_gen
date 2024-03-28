@@ -70,10 +70,23 @@ export default function Home() {
               Hurr Durr Me
             </h1>
           </div>
-          <div className="h-fit max-w-prose">
-            <p className='text-clip text-4xl text-center font-medium'
-              onClick={() => {navigator.clipboard.writeText(hurrDurredSentence); setToClipboard(true)}}
-            >{sentence? hurrDurredSentence : "Hurr durr uh?"}</p>
+          <div className="h-fit max-w-xl">
+            {sentence ? (
+              <p className='text-clip text-4xl text-center font-medium overflow-scroll'
+                onClick={() => { navigator.clipboard.writeText(hurrDurredSentence); setToClipboard(true) }}
+              >
+                {hurrDurredSentence.length > 100
+                  ? hurrDurredSentence.slice(0, 100) + "..."
+                  : hurrDurredSentence
+                }
+              </p>
+            ) : (
+              <p className='text-clip text-4xl text-center font-medium'
+                onClick={() => { navigator.clipboard.writeText(hurrDurredSentence); setToClipboard(true) }}
+              >
+                Hurr durr uh?
+              </p>
+            )}
           </div>
           <div className="h-10">
             {toClipboard ?
